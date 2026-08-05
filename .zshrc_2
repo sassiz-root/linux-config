@@ -1,0 +1,67 @@
+#Welcome Message
+echo "Hi Sassiz.Root! Welcome to system...Have a good time!!!"
+
+#set envirement variable
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
+
+#Set up the prompt
+
+autoload -Uz promptinit
+promptinit
+#prompt adam2
+prompt elite green 
+setopt histignorealldups sharehistory
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+#setup autocomplete
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # تکمیل بدون حساسیت به حروف بزرگ و کوچک
+
+#Alias
+alias ls='ls --color=auto'
+alias ll='ls -ltrha --color=auto'
+alias p='ping '
+alias p1='ping 192.168.1.1 -c 4 '
+alias p5='ping 192.168.5.1 -c 4 '
+alias p8='ping 8.8.8.8 -c 4 '
+alias fb='nautilus --browser'
+alias cal='ncal -3;jcal -3;'
+alias getmyip='curl -s icanhazip.com'
+alias getmyip2='curl ident.me'
+alias _='sudo '
+
+#set default editor
+alias -s txt=vim
+alias -s c=vim
+alias -s php=vim
+alias -s cpp=vim
+alias -s css=vim
+alias -s js=vim
+alias -s html=vim
+alias -s py=vim
+alias -s xml=vim
+
+# Plugins
+plugins=(git virtualenv)
+
+#active zsh plugin
+#you must first install this plugin: sudo apt install zsh-autosuggestions zsh-syntax-highlighting
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#Custom functions
+
+##make directory then cd inside it
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<
